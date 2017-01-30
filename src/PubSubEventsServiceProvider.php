@@ -1,6 +1,6 @@
 <?php
 
-namespace Superbalist\LaravelEventPubSub;
+namespace Superbalist\Laravel4EventPubSub;
 
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
