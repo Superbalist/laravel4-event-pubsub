@@ -40,7 +40,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
             // we'll use the connection name configured in the 'default' config setting from the 'pubsub_events'
             // config
             // if this value isn't set, we'll default to that from the 'pubsub' package config
-            $config = $app['config']['pubsub_events'];
+            $config = $this->getConfig();
             $manager = $app['pubsub']; /** @var PubSubManager $manager */
             return $manager->connection($config['default']);
         });
@@ -48,7 +48,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
         $this->app->bind('pubsub.events.translator', MessageTranslatorInterface::class);
 
         $this->app->bind(MessageTranslatorInterface::class, function ($app) {
-            $config = $app['config']['pubsub_events'];
+            $config = $this->getConfig();
             $binding = $config['translator'];
             return $app[$binding];
         });
@@ -56,7 +56,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
         $this->app->bind('pubsub.events.validator', EventValidatorInterface::class);
 
         $this->app->bind(EventValidatorInterface::class, function ($app) {
-            $config = $app['config']['pubsub_events'];
+            $config = $this->getConfig();
             $binding = $config['validator'];
             // a validator is optional
             // if nothing is set, we don't try resolve it
@@ -98,7 +98,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
     protected function registerValidators()
     {
         $this->app->singleton('pubsub.events.validators.json_schema.loaders.array.schemas', function ($app) {
-            $config = $app['config']['pubsub_events'];
+            $config = $this->getConfig();
             $schemas = $config['validators']['json_schema']['loaders']['array']['schemas'];
             return collect($schemas);
         });
@@ -116,7 +116,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
         $this->app->bind('pubsub.events.validators.json_schema.dereferencer', function ($app) {
             $dereferencer = new Dereferencer();
 
-            $config = $app['config']['pubsub_events'];
+            $config = $this->getConfig();
 
             foreach ($config['validators']['json_schema']['loaders'] as $name => $params) {
                 $name = array_get($params, 'binding', $name);
@@ -131,6 +131,15 @@ class PubSubEventsServiceProvider extends ServiceProvider
 
             return $dereferencer;
         });
+    }
+
+    /**
+     * @return array
+     */
+    protected function getConfig()
+    {
+        $config = $this->app->make('config'); /** @var \Illuminate\Config\Repository $config */
+        return $config->get('laravel4-event-pubsub::config');
     }
 
     /**
