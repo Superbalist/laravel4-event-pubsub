@@ -112,7 +112,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
         $this->app->singleton('pubsub.events.validators.json_schema.loaders.array.schemas', function ($app) {
             $config = $this->getConfig();
             $schemas = $config['validators']['json_schema']['loaders']['array']['schemas'];
-            return collect($schemas);
+            return new Collection($schemas);
         });
 
         $this->app->bind('pubsub.events.validators.json_schema.loaders.array', function ($app) {
