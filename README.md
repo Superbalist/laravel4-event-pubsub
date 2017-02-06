@@ -4,6 +4,7 @@ An event protocol and implementation over pub/sub for Laravel 4.
 
 [![Author](http://img.shields.io/badge/author-@superbalist-blue.svg?style=flat-square)](https://twitter.com/superbalist)
 [![Build Status](https://img.shields.io/travis/Superbalist/laravel4-event-pubsub/master.svg?style=flat-square)](https://travis-ci.org/Superbalist/laravel4-event-pubsub)
+[![StyleCI](https://styleci.io/repos/80420429/shield?branch=master)](https://styleci.io/repos/80420429)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
 [![Packagist Version](https://img.shields.io/packagist/v/superbalist/laravel4-event-pubsub.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel4-event-pubsub)
 [![Total Downloads](https://img.shields.io/packagist/dt/superbalist/laravel4-event-pubsub.svg?style=flat-square)](https://packagist.org/packages/superbalist/laravel4-event-pubsub)
