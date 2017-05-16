@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.2 - 2017-05-16
+
+* Allow for php-event-pubsub ^3.0
+
 ## 2.0.1 - 2017-02-02
 
 * Fix call to `collect` helper method not available in Laravel 4
