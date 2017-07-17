@@ -179,7 +179,7 @@ return [
     */
 
     'translate_fail_handler' => function ($message) {
-        $dispatcher = app('events'); /** @var \Illuminate\Events\Dispatcher $dispatcher */
+        $dispatcher = app('events'); /* @var \Illuminate\Events\Dispatcher $dispatcher */
         $dispatcher->fire('pubsub.events.translation_failure', [$message]);
     },
 
@@ -196,7 +196,7 @@ return [
     */
 
     'listen_expr_fail_handler' => function (\Superbalist\EventPubSub\EventInterface $event, $expr) {
-        $dispatcher = app('events'); /** @var \Illuminate\Events\Dispatcher $dispatcher */
+        $dispatcher = app('events'); /* @var \Illuminate\Events\Dispatcher $dispatcher */
         $dispatcher->fire('pubsub.events.listen_expr_failure', [$event, $expr]);
     },
 
@@ -211,7 +211,7 @@ return [
     */
 
     'validation_fail_handler' => function (\Superbalist\EventPubSub\ValidationResult $result) {
-        $dispatcher = app('events'); /** @var \Illuminate\Events\Dispatcher $dispatcher */
+        $dispatcher = app('events'); /* @var \Illuminate\Events\Dispatcher $dispatcher */
         $dispatcher->fire('pubsub.events.validation_failure', [$result]);
     },
 
