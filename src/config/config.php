@@ -200,4 +200,19 @@ return [
         $dispatcher->fire('pubsub.events.listen_expr_failure', [$event, $expr]);
     },
 
+    /*
+    |--------------------------------------------------------------------------
+    | Validation Fail Handler
+    |--------------------------------------------------------------------------
+    |
+    | The validation handler is a callable which is called when an event
+    | is dispatched or received but fails validation.
+    |
+    */
+
+    'validation_fail_handler' => function (\Superbalist\EventPubSub\ValidationResult $result) {
+        $dispatcher = app('events'); /** @var \Illuminate\Events\Dispatcher $dispatcher */
+        $dispatcher->fire('pubsub.events.validation_failure', [$result]);
+    },
+
 ];

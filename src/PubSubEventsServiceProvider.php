@@ -89,7 +89,8 @@ class PubSubEventsServiceProvider extends ServiceProvider
                 $validator,
                 $injectors,
                 $config['translate_fail_handler'],
-                $config['listen_expr_fail_handler']
+                $config['listen_expr_fail_handler'],
+                $config['validation_fail_handler']
             );
             $manager->throwValidationExceptionsOnDispatch($config['throw_validation_exceptions_on_dispatch']);
         });
