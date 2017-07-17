@@ -156,4 +156,16 @@ return [
 
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Throw Validation Exceptions on Dispatch?
+    |--------------------------------------------------------------------------
+    |
+    | If true, and a validator is set, if an event fails validation on dispatch,
+    | a ValidationException will be thrown.
+    |
+    */
+
+    'throw_validation_exceptions_on_dispatch' => true,
+
 ];

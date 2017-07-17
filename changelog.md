@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.0 - ?
+
+* Bump up to superbalist/php-event-pubsub ^4.0
+* Add container binding for EventManager::class
+* Change 'pubsub.events' binding to no longer be a singleton and to alias to EventManager::class
+* Add new 'throw_validation_exceptions_on_dispatch' config option
+
 ## 2.0.2 - 2017-05-16
 
 * Allow for php-event-pubsub ^3.0
