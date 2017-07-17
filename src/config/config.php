@@ -183,4 +183,21 @@ return [
         $dispatcher->fire('pubsub.events.translation_failure', [$message]);
     },
 
+    /*
+    |--------------------------------------------------------------------------
+    | Listen Expr Fail Handler
+    |--------------------------------------------------------------------------
+    |
+    | The listen expr fail handler is a callable which is called when an event
+    | is received but doesn't match the listen expression.
+    |
+    | This isn't really an error, but can be useful for debugging.
+    |
+    */
+
+    'listen_expr_fail_handler' => function (\Superbalist\EventPubSub\EventInterface $event, $expr) {
+        $dispatcher = app('events'); /** @var \Illuminate\Events\Dispatcher $dispatcher */
+        $dispatcher->fire('pubsub.events.listen_expr_failure', [$event, $expr]);
+    },
+
 ];
