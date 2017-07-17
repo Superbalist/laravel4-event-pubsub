@@ -188,3 +188,31 @@ $manager->dispatch('events', $event);
 
 // the listen expressions are the same as those used for TopicEvents.
 ```
+
+## Error Handling
+
+The library supports error handlers for when event translation fails, listen expression fails and validation fails.
+
+These are configurable as callables in the translate_fail_handler, listen_expr_fail_handler and validation_fail_handler
+config options.
+
+The config contains default callables which will turn the callbacks into Laravel events.
+
+You can listen for the following to hook into these:
+```php
+$events = app('events'); // or just use the facade Events
+
+$events->listen('pubsub.events.translation_failure', function ($message) {
+    // the message failed to translate into an event
+});
+
+$events->listen('pubsub.events.listen_expr_failure', function (\Superbalist\EventPubSub\EventInterface $event, $expr) {
+    // the event didn't match the listen expression
+    // this isn't really an error, but can be useful for debug
+});
+
+$events->listen('pubsub.events.validation_failure', function (\Superbalist\EventPubSub\ValidationResult $result) {
+    // the event failed validation
+    var_dump($result->errors());
+});
+```
