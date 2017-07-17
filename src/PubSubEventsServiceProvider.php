@@ -83,7 +83,13 @@ class PubSubEventsServiceProvider extends ServiceProvider
                 }
             }
 
-            $manager = new EventManager($adapter, $translator, $validator, $injectors);
+            $manager = new EventManager(
+                $adapter,
+                $translator,
+                $validator,
+                $injectors,
+                $config['translate_fail_handler']
+            );
             $manager->throwValidationExceptionsOnDispatch($config['throw_validation_exceptions_on_dispatch']);
         });
     }

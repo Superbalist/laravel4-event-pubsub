@@ -6,6 +6,7 @@
 * Add container binding for EventManager::class
 * Change 'pubsub.events' binding to no longer be a singleton and to alias to EventManager::class
 * Add new 'throw_validation_exceptions_on_dispatch' config option
+* Add new 'translate_fail_handler' config option and default callable to dispatch a 'pubsub.events.translation_failure' event
 
 ## 2.0.2 - 2017-05-16
 

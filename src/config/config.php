@@ -168,4 +168,19 @@ return [
 
     'throw_validation_exceptions_on_dispatch' => true,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Translate Fail Handler
+    |--------------------------------------------------------------------------
+    |
+    | The translate fail handler is a callable which is called when a message
+    | is received but fails to translate to an event.
+    |
+    */
+
+    'translate_fail_handler' => function ($message) {
+        $dispatcher = app('events'); /** @var \Illuminate\Events\Dispatcher $dispatcher */
+        $dispatcher->fire('pubsub.events.translation_failure', [$message]);
+    },
+
 ];

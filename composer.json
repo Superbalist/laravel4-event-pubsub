@@ -13,7 +13,8 @@
     "superbalist/php-event-pubsub": "^4.0",
     "superbalist/laravel4-pubsub": "^2.0",
     "illuminate/support": "^4.0",
-    "illuminate/config": "^4.0"
+    "illuminate/config": "^4.0",
+    "illuminate/events": "^4.0"
   },
   "autoload": {
     "psr-4": {
