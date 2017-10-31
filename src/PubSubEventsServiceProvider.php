@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use League\JsonGuard\Dereferencer;
 use League\JsonGuard\Loader;
 use League\JsonGuard\Loaders\ArrayLoader;
+use League\JsonReference\CachedDereferencer;
 use Superbalist\EventPubSub\EventManager;
 use Superbalist\EventPubSub\EventValidatorInterface;
 use Superbalist\EventPubSub\MessageTranslatorInterface;
@@ -138,10 +139,17 @@ class PubSubEventsServiceProvider extends ServiceProvider
         });
 
         $this->app->bind('pubsub.events.validators.json_schema.dereferencer', function ($app) {
-            $dereferencer = new Dereferencer();
-
             $config = $this->getConfig();
 
+            $cached = $config['cached'];
+            
+            if ($cached) {
+                $dereferencer = new CachedDereferencer(new Dereferencer(), Cache);
+            }
+            else {
+                $dereferencer = new Dereferencer();
+            }
+            
             foreach ($config['validators']['json_schema']['loaders'] as $name => $params) {
                 $name = array_get($params, 'binding', $name);
                 $binding = sprintf('pubsub.events.validators.json_schema.loaders.%s', $name);
@@ -188,3 +196,4 @@ class PubSubEventsServiceProvider extends ServiceProvider
         ];
     }
 }
+
