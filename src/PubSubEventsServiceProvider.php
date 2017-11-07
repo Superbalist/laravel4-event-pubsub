@@ -8,7 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use League\JsonGuard\Dereferencer;
 use League\JsonGuard\Loader;
 use League\JsonGuard\Loaders\ArrayLoader;
-use League\JsonReference\CachedDereferencer;
+use League\JsonGuard\CachedDereferencer;
 use Superbalist\EventPubSub\EventManager;
 use Superbalist\EventPubSub\EventValidatorInterface;
 use Superbalist\EventPubSub\MessageTranslatorInterface;
