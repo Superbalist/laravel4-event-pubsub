@@ -2,6 +2,7 @@
 
 namespace Superbalist\Laravel4EventPubSub;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Collection;
 use Illuminate\Support\ServiceProvider;
 use League\JsonGuard\Dereferencer;
