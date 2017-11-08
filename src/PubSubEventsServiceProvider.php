@@ -143,15 +143,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
         $this->app->bind('pubsub.events.validators.json_schema.dereferencer', function ($app) {
             $config = $this->getConfig();
 
-            $cached = $config['cached'];
-            
-            if ($cached) {
-                $pool = app(LaravelCacheItemPool::class);
-                $dereferencer = new CachedDereferencer($pool, new Dereferencer());
-            }
-            else {
-                $dereferencer = new Dereferencer();
-            }
+            $dereferencer = new Dereferencer();
             
             foreach ($config['validators']['json_schema']['loaders'] as $name => $params) {
                 $name = array_get($params, 'binding', $name);
@@ -162,6 +154,12 @@ class PubSubEventsServiceProvider extends ServiceProvider
                 $loader = $app[$binding]; /* @var Loader $loader */
 
                 $dereferencer->registerLoader($loader, $prefix);
+            }
+
+            $cached = $config['cached'];
+            if($cached) {
+                $pool = app(LaravelCacheItemPool::class);
+                $dereferencer = new CachedDereferencer($pool, $dereferencer);
             }
 
             return $dereferencer;
