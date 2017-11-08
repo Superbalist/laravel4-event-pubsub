@@ -19,6 +19,7 @@ use Superbalist\EventPubSub\Validators\JSONSchemaEventValidator;
 use Superbalist\Laravel4PubSub\PubSubManager;
 use Superbalist\Laravel4PubSub\PubSubServiceProvider;
 use Superbalist\PubSub\PubSubAdapterInterface;
+use Superbalist\Laravel4PSR6CacheBridge\LaravelCacheItemPool;
 
 class PubSubEventsServiceProvider extends ServiceProvider
 {
@@ -145,8 +146,8 @@ class PubSubEventsServiceProvider extends ServiceProvider
             $cached = $config['cached'];
             
             if ($cached) {
-                $cache = Cache::driver();
-                $dereferencer = new CachedDereferencer($cache, new Dereferencer());
+                $pool = app(LaravelCacheItemPool::class);
+                $dereferencer = new CachedDereferencer($pool, new Dereferencer());
             }
             else {
                 $dereferencer = new Dereferencer();

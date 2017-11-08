@@ -12,6 +12,7 @@
     "php": ">=5.6.0",
     "superbalist/php-event-pubsub": "^4.0",
     "superbalist/laravel4-pubsub": "^2.0|^3.0",
+    "superbalist/Laravel4PSR6CacheBridge": "1.0.1",
     "league/json-reference": "^1.0.0",
     "yuloh/json-guard-cached": "dev-master",
     "illuminate/support": "^4.0",
