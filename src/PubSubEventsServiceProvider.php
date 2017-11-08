@@ -19,6 +19,7 @@ use Superbalist\EventPubSub\Validators\JSONSchemaEventValidator;
 use Superbalist\Laravel4PubSub\PubSubManager;
 use Superbalist\Laravel4PubSub\PubSubServiceProvider;
 use Superbalist\PubSub\PubSubAdapterInterface;
+use Superbalist\Laravel4PSR6CacheBridge\LaravelCacheItemPool;
 
 class PubSubEventsServiceProvider extends ServiceProvider
 {
@@ -142,15 +143,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
         $this->app->bind('pubsub.events.validators.json_schema.dereferencer', function ($app) {
             $config = $this->getConfig();
 
-            $cached = $config['cached'];
-            
-            if ($cached) {
-                $cache = Cache::driver();
-                $dereferencer = new CachedDereferencer(new Dereferencer(), $cache);
-            }
-            else {
-                $dereferencer = new Dereferencer();
-            }
+            $dereferencer = new Dereferencer();
             
             foreach ($config['validators']['json_schema']['loaders'] as $name => $params) {
                 $name = array_get($params, 'binding', $name);
@@ -161,6 +154,12 @@ class PubSubEventsServiceProvider extends ServiceProvider
                 $loader = $app[$binding]; /* @var Loader $loader */
 
                 $dereferencer->registerLoader($loader, $prefix);
+            }
+
+            $cached = $config['cached'];
+            if($cached) {
+                $pool = app(LaravelCacheItemPool::class);
+                $dereferencer = new CachedDereferencer($pool, $dereferencer);
             }
 
             return $dereferencer;
