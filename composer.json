@@ -13,6 +13,7 @@
     "superbalist/php-event-pubsub": "^4.0",
     "superbalist/laravel4-pubsub": "^2.0|^3.0",
     "league/json-reference": "^1.0.0",
+    "yuloh/json-guard-cached": "dev-master",
     "illuminate/support": "^4.0",
     "illuminate/config": "^4.0",
     "illuminate/events": "^4.0"

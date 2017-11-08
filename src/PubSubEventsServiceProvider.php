@@ -146,7 +146,7 @@ class PubSubEventsServiceProvider extends ServiceProvider
             
             if ($cached) {
                 $cache = Cache::driver();
-                $dereferencer = new CachedDereferencer(new Dereferencer(), $cache);
+                $dereferencer = new CachedDereferencer($cache, new Dereferencer());
             }
             else {
                 $dereferencer = new Dereferencer();
