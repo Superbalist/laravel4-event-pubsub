@@ -14,7 +14,7 @@
     "superbalist/laravel4-pubsub": "^2.0|^3.0",
     "superbalist/laravel4-psr6-cache-bridge": "1.0.1",
     "league/json-reference": "^1.0.0",
-    "yuloh/json-guard-cached": "dev-master",
+    "mikefaut/json-guard-cached": "dev-patch-1",
     "illuminate/support": "^4.0",
     "illuminate/config": "^4.0",
     "illuminate/events": "^4.0"
